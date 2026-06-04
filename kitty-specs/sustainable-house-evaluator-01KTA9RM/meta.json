@@ -1,0 +1,10 @@
+{
+  "created_at": "2026-06-04T21:48:53.255724+00:00",
+  "friendly_name": "sustainable house evaluator",
+  "mission_id": "01KTA9RMG76YKC83Z6EAG1N323",
+  "mission_number": null,
+  "mission_slug": "sustainable-house-evaluator-01KTA9RM",
+  "mission_type": "software-dev",
+  "slug": "sustainable-house-evaluator-01KTA9RM",
+  "target_branch": "master"
+}
