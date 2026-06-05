@@ -11,6 +11,9 @@ requirement_refs:
 planning_base_branch: master
 merge_target_branch: master
 branch_strategy: Planning artifacts for this feature were generated on master. During /spec-kitty.implement this WP may branch from a dependency-specific base, but completed changes must merge back into master unless the human explicitly redirects the landing branch.
+base_branch: kitty/mission-sustainable-house-evaluator-01KTA9RM
+base_commit: 46b3c71cfb064e36cb2bb75ce64378ee6d5d363f
+created_at: '2026-06-05T12:17:23.666826+00:00'
 subtasks:
 - T001
 - T002
@@ -19,6 +22,7 @@ subtasks:
 - T005
 - T006
 - T007
+shell_pid: '77192'
 history: []
 authoritative_surface: src/
 execution_mode: code_change
