@@ -1,6 +1,7 @@
 /* Sustainable House Evaluator — Assessment Business Logic */
 import * as db from './db.js';
 import { getState, setState } from './store.js';
+import { computeOverallScore } from './scoring.js';
 
 /**
  * Start a new assessment for the given profile.
@@ -73,6 +74,10 @@ export function saveItemResult(categoryKey, itemKey, { sliderValue, notApplicabl
   // Recompute category completion_pct
   const rated = cat.items.filter(i => i.slider_value > 0 || i.not_applicable).length;
   cat.completion_pct = Math.round((rated / cat.items.length) * 100);
+
+  // Recompute overall score in real time
+  const { itemCatalogue } = getState();
+  assessment.overall_score = computeOverallScore(assessment, itemCatalogue);
 
   setState({ activeAssessment: assessment });
   return assessment;
