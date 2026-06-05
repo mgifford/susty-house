@@ -1,0 +1,113 @@
+{
+  "version": 1,
+  "mission_slug": "sustainable-house-evaluator-01KTA9RM",
+  "mission_id": "01KTA9RMG76YKC83Z6EAG1N323",
+  "mission_branch": "kitty/mission-sustainable-house-evaluator-01KTA9RM",
+  "target_branch": "master",
+  "lanes": [
+    {
+      "lane_id": "lane-a",
+      "wp_ids": [
+        "WP01",
+        "WP02",
+        "WP03",
+        "WP04",
+        "WP05",
+        "WP06",
+        "WP07",
+        "WP08"
+      ],
+      "write_scope": [
+        ".github/workflows/pages.yml",
+        "README.md",
+        "index.html",
+        "kitty-specs/sustainable-house-evaluator-01KTA9RM/checklists/final-audit.md",
+        "manifest.json",
+        "src/css/main.css",
+        "src/css/overrides.css",
+        "src/css/print.css",
+        "src/data/items.json",
+        "src/data/strings.json",
+        "src/js/app.js",
+        "src/js/assessment.js",
+        "src/js/db.js",
+        "src/js/export-html.js",
+        "src/js/export-yaml.js",
+        "src/js/import-yaml.js",
+        "src/js/profiles.js",
+        "src/js/pwa.js",
+        "src/js/recommendations.js",
+        "src/js/scoring.js",
+        "src/js/store.js",
+        "src/js/views/assessment.js",
+        "src/js/views/home.js",
+        "src/js/views/profile.js",
+        "src/js/views/results.js",
+        "sw.js"
+      ],
+      "predicted_surfaces": [
+        "api",
+        "app-shell",
+        "artifact-rendering",
+        "legacy-cleanup",
+        "tracker-integration"
+      ],
+      "depends_on_lanes": [],
+      "parallel_group": 0
+    }
+  ],
+  "computed_at": "2026-06-05T12:07:10.077324+00:00",
+  "computed_from": "dependency_graph+ownership",
+  "planning_artifact_wps": [],
+  "collapse_report": {
+    "events": [
+      {
+        "wp_a": "WP02",
+        "wp_b": "WP01",
+        "rule": "dependency",
+        "evidence": "WP02 depends on WP01"
+      },
+      {
+        "wp_a": "WP03",
+        "wp_b": "WP02",
+        "rule": "dependency",
+        "evidence": "WP03 depends on WP02"
+      },
+      {
+        "wp_a": "WP04",
+        "wp_b": "WP03",
+        "rule": "dependency",
+        "evidence": "WP04 depends on WP03"
+      },
+      {
+        "wp_a": "WP05",
+        "wp_b": "WP04",
+        "rule": "dependency",
+        "evidence": "WP05 depends on WP04"
+      },
+      {
+        "wp_a": "WP06",
+        "wp_b": "WP05",
+        "rule": "dependency",
+        "evidence": "WP06 depends on WP05"
+      },
+      {
+        "wp_a": "WP07",
+        "wp_b": "WP05",
+        "rule": "dependency",
+        "evidence": "WP07 depends on WP05"
+      },
+      {
+        "wp_a": "WP08",
+        "wp_b": "WP06",
+        "rule": "dependency",
+        "evidence": "WP08 depends on WP06"
+      }
+    ],
+    "total_merges": 7,
+    "independent_wps_collapsed": 0,
+    "by_rule": {
+      "dependency": 7
+    }
+  }
+}
