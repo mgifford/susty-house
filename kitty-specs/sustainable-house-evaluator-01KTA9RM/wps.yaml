@@ -9,6 +9,8 @@ work_packages:
       - "README.md"
       - "src/css/main.css"
       - "src/css/print.css"
+      - "src/css/overrides.css"
+      - "src/icons/**"
       - "src/js/app.js"
       - "src/js/pwa.js"
       - ".github/workflows/pages.yml"
@@ -162,7 +164,6 @@ work_packages:
       - WP06
       - WP07
     owned_files:
-      - "src/css/overrides.css"
       - "kitty-specs/sustainable-house-evaluator-01KTA9RM/checklists/final-audit.md"
     requirement_refs:
       - NFR-005

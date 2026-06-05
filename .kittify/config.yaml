@@ -1,0 +1,11 @@
+vcs:
+  type: git
+agents:
+  available:
+  - copilot
+  auto_commit: true
+project:
+  uuid: 57af1aa2-4aa2-47b6-96c8-8e56f2506565
+  slug: susty-house
+  node_id: 32b76985e84c
+  build_id: e33d2386-299e-4c2d-9579-384638f53d4e
