@@ -179,3 +179,7 @@ audit document shows all tests as PASS
 ```bash
 spec-kitty agent action implement WP08 --agent copilot
 ```
+
+## Activity Log
+
+- 2026-06-05T19:22:36Z – unknown – Moved to for_review
