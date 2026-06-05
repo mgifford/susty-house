@@ -25,6 +25,8 @@ owned_files:
 - src/js/views/home.js
 - src/js/views/profile.js
 tags: []
+agent: "copilot"
+shell_pid: "13404"
 ---
 
 # WP03 — House Profile and Capacity Forms
@@ -201,3 +203,7 @@ highlighted; delete the profile, reload, verify home shows empty state
 ```bash
 spec-kitty agent action implement WP03 --agent copilot
 ```
+
+## Activity Log
+
+- 2026-06-05T17:31:30Z – copilot – shell_pid=13404 – Started implementation via action command
