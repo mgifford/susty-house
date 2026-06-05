@@ -3,7 +3,7 @@
    Cache-First strategy; pre-caches all app assets on install
    ========================================================= */
 
-const CACHE_NAME = 'susty-house-v3';
+const CACHE_NAME = 'susty-house-v4';
 
 const PRECACHE_URLS = [
   '/susty-house/',

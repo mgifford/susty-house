@@ -30,7 +30,7 @@ export function registerServiceWorker() {
 function showUpdateBanner() {
   const banner = document.createElement('div');
   banner.className = 'update-banner';
-  banner.setAttribute('role', 'alert');
+  window.App?.announceStatus?.('A new version is available. Reload to update.');
   banner.innerHTML = `
     <span>A new version is available.</span>
     <button class="btn btn-sm" onclick="location.reload()" type="button">

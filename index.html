@@ -18,14 +18,16 @@
   <header class="app-header" role="banner">
     <div class="header-inner">
       <span class="app-title">🏡 Sustainable House Evaluator</span>
-      <div id="score-badge" class="score-badge" role="status" aria-live="polite" aria-label="Current sustainability score" hidden>
+      <div id="score-badge" class="score-badge" role="status" aria-live="polite" aria-atomic="true" aria-label="Current sustainability score" hidden>
         <span class="score-value">0</span>
         <span class="score-label">/100</span>
       </div>
     </div>
   </header>
 
-  <main id="main-content">
+  <div id="app-status" class="visually-hidden" role="status" aria-live="polite" aria-atomic="true"></div>
+
+  <main id="main-content" tabindex="-1">
     <section id="view-loading" class="view" aria-label="Loading">
       <div class="loading-spinner" role="status" aria-label="Loading application…">
         <div class="spinner" aria-hidden="true"></div>

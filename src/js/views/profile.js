@@ -29,6 +29,12 @@ function renderForm(state) {
       <h1 tabindex="-1">${p ? 'Edit Profile' : window.t('profile.title')}</h1>
 
       <form id="profile-form" novalidate>
+        <div id="profile-error-summary" class="card mb-md" role="alert"
+             aria-labelledby="profile-error-summary-title" hidden tabindex="-1">
+          <h2 id="profile-error-summary-title">There are problems with this form</h2>
+          <ul id="profile-error-list"></ul>
+        </div>
+
         <div class="card mb-md">
           <h2>House Details</h2>
 
@@ -37,8 +43,8 @@ function renderForm(state) {
             <input type="text" id="f-nickname" name="nickname" required
                    maxlength="100" autocomplete="off"
                    value="${esc(p?.nickname ?? '')}"
-                   aria-required="true">
-            <span class="field-error" id="err-nickname" role="alert"></span>
+                   aria-describedby="err-nickname">
+            <span class="field-error" id="err-nickname"></span>
           </div>
 
           <div class="form-row-2">
@@ -46,52 +52,52 @@ function renderForm(state) {
               <label for="f-year">${window.t('profile.year_built')} *</label>
               <input type="number" id="f-year" name="year_built" required
                      min="1800" max="${new Date().getFullYear()}"
-                     value="${p?.year_built ?? ''}" aria-required="true">
-              <span class="field-error" id="err-year_built" role="alert"></span>
+                     value="${p?.year_built ?? ''}" aria-describedby="err-year_built">
+              <span class="field-error" id="err-year_built"></span>
             </div>
             <div class="form-group">
               <label for="f-area">${window.t('profile.floor_area')} *</label>
               <input type="number" id="f-area" name="floor_area_sqm" required
                      min="1" step="0.1"
-                     value="${p?.floor_area_sqm ?? ''}" aria-required="true">
-              <span class="field-error" id="err-floor_area_sqm" role="alert"></span>
+                     value="${p?.floor_area_sqm ?? ''}" aria-describedby="err-floor_area_sqm">
+              <span class="field-error" id="err-floor_area_sqm"></span>
             </div>
           </div>
 
           <div class="form-row-2">
             <div class="form-group">
               <label for="f-storeys">${window.t('profile.storeys')} *</label>
-              <select id="f-storeys" name="storeys" required aria-required="true">
+              <select id="f-storeys" name="storeys" required aria-describedby="err-storeys">
                 <option value="">— select —</option>
                 ${[1,2,3,4,5,6].map(n => `<option value="${n}" ${p?.storeys==n?'selected':''}>${n}</option>`).join('')}
               </select>
-              <span class="field-error" id="err-storeys" role="alert"></span>
+              <span class="field-error" id="err-storeys"></span>
             </div>
             <div class="form-group">
               <label for="f-occupants">${window.t('profile.occupants')} *</label>
               <input type="number" id="f-occupants" name="occupant_count" required
                      min="1" max="20"
-                     value="${p?.occupant_count ?? ''}" aria-required="true">
-              <span class="field-error" id="err-occupant_count" role="alert"></span>
+                     value="${p?.occupant_count ?? ''}" aria-describedby="err-occupant_count">
+              <span class="field-error" id="err-occupant_count"></span>
             </div>
           </div>
 
           <div class="form-row-2">
             <div class="form-group">
               <label for="f-construction">${window.t('profile.construction_type')} *</label>
-              <select id="f-construction" name="construction_type" required aria-required="true">
+              <select id="f-construction" name="construction_type" required aria-describedby="err-construction_type">
                 <option value="">— select —</option>
                 ${CONSTRUCTION_TYPES.map(v => `<option value="${v}" ${p?.construction_type===v?'selected':''}>${window.t('profile.type.'+v)}</option>`).join('')}
               </select>
-              <span class="field-error" id="err-construction_type" role="alert"></span>
+              <span class="field-error" id="err-construction_type"></span>
             </div>
             <div class="form-group">
               <label for="f-climate">${window.t('profile.climate_zone')} *</label>
-              <select id="f-climate" name="climate_zone" required aria-required="true">
+              <select id="f-climate" name="climate_zone" required aria-describedby="err-climate_zone">
                 <option value="">— select —</option>
                 ${CLIMATE_ZONES.map(v => `<option value="${v}" ${p?.climate_zone===v?'selected':''}>${window.t('profile.zone.'+v)}</option>`).join('')}
               </select>
-              <span class="field-error" id="err-climate_zone" role="alert"></span>
+              <span class="field-error" id="err-climate_zone"></span>
             </div>
           </div>
         </div>
@@ -187,11 +193,11 @@ function renderCapacityField(id, name, label, options, prefix, currentVal) {
   return `
     <div class="form-group">
       <label for="${id}">${label} *</label>
-      <select id="${id}" name="${name}" required aria-required="true">
+      <select id="${id}" name="${name}" required aria-describedby="err-${name}">
         <option value="">— select —</option>
         ${options.map(v => `<option value="${v}" ${currentVal===v?'selected':''}>${window.t(prefix+v)}</option>`).join('')}
       </select>
-      <span class="field-error" id="err-${name}" role="alert"></span>
+      <span class="field-error" id="err-${name}"></span>
     </div>
   `;
 }
@@ -237,12 +243,35 @@ function showErrors(errors, section) {
   // Clear all
   section.querySelectorAll('.field-error').forEach(el => { el.textContent = ''; });
   section.querySelectorAll('[aria-invalid]').forEach(el => el.removeAttribute('aria-invalid'));
+  const summary = section.querySelector('#profile-error-summary');
+  const list = section.querySelector('#profile-error-list');
+  if (summary) summary.setAttribute('hidden', '');
+  if (list) list.innerHTML = '';
+
   // Set new
   for (const [field, msg] of Object.entries(errors)) {
     const errEl = section.querySelector(`#err-${field}`);
     const input = section.querySelector(`[name="${field}"]`);
     if (errEl) errEl.textContent = msg;
     if (input) input.setAttribute('aria-invalid', 'true');
+    if (list && input) {
+      const labelText = input.labels?.[0]?.textContent?.replace('*', '').trim() || field;
+      const item = document.createElement('li');
+      item.innerHTML = `<a href="#${input.id}">${esc(labelText)} - ${esc(msg)}</a>`;
+      list.appendChild(item);
+    }
+  }
+
+  if (list?.children.length && summary) {
+    summary.removeAttribute('hidden');
+    summary.focus();
+    summary.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', (event) => {
+        event.preventDefault();
+        const target = section.querySelector(link.getAttribute('href'));
+        target?.focus();
+      });
+    });
   }
 }
 

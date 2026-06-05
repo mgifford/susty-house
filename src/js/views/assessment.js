@@ -113,7 +113,7 @@ function _renderShell(section, state) {
         </nav>
 
         <!-- Category content pane -->
-        <div id="category-content" role="main"></div>
+        <div id="category-content"></div>
       </div>
     </div>
   `;

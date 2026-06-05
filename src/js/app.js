@@ -69,6 +69,15 @@ function updateScoreBadge(score) {
   badge.removeAttribute('hidden');
 }
 
+function announceStatus(message) {
+  const region = document.getElementById('app-status');
+  if (!region) return;
+  region.textContent = '';
+  window.setTimeout(() => {
+    region.textContent = message;
+  }, 50);
+}
+
 // ---------- Bootstrap -------------------------------------
 
 async function boot() {
@@ -139,19 +148,19 @@ async function boot() {
 // ---------- Toast helper (global) -------------------------
 
 export function showToast(message, durationMs = 3000) {
+  announceStatus(message);
   const existing = document.querySelector('.toast');
   if (existing) existing.remove();
   const toast = document.createElement('div');
   toast.className = 'toast';
-  toast.setAttribute('role', 'status');
-  toast.setAttribute('aria-live', 'polite');
+  toast.setAttribute('aria-hidden', 'true');
   toast.textContent = message;
   document.body.appendChild(toast);
   setTimeout(() => toast.remove(), durationMs);
 }
 
 // Expose to other modules
-window.App = { showView, hideAllViews, showToast };
+window.App = { showView, hideAllViews, showToast, announceStatus };
 
 // ---------- Start -----------------------------------------
 document.addEventListener('DOMContentLoaded', boot);
