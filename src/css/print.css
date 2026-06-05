@@ -1,0 +1,89 @@
+/* =========================================================
+   Sustainable House Evaluator — Print Stylesheet
+   ========================================================= */
+@media print {
+  @page {
+    size: A4;
+    margin: 15mm 20mm;
+  }
+
+  /* Hide interactive / decorative elements */
+  .app-header,
+  .skip-link,
+  .btn,
+  .nav-sidebar,
+  .category-nav,
+  #view-loading,
+  #view-home,
+  #view-profile,
+  #view-assessment,
+  .update-banner,
+  .toast,
+  [aria-hidden="true"] {
+    display: none !important;
+  }
+
+  /* Reset to black text on white */
+  *, *::before, *::after {
+    background: #fff !important;
+    color: #111 !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
+
+  body {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 11pt;
+    line-height: 1.5;
+  }
+
+  h1 { font-size: 20pt; margin-bottom: 8pt; page-break-after: avoid; }
+  h2 { font-size: 15pt; margin-bottom: 6pt; page-break-after: avoid; }
+  h3 { font-size: 12pt; margin-bottom: 4pt; page-break-after: avoid; }
+
+  /* Keep cards together on a page */
+  .card,
+  .item-card,
+  .recommendation-card,
+  tr {
+    break-inside: avoid;
+  }
+
+  /* Page break before major report sections */
+  .report-section { page-break-before: auto; }
+  .report-section.history { page-break-before: always; }
+
+  /* Tables */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 12pt;
+  }
+  th, td {
+    border: 1px solid #999;
+    padding: 4pt 6pt;
+    text-align: left;
+    vertical-align: top;
+  }
+  th { background: #f0f0f0 !important; font-weight: bold; }
+
+  /* Progress bars — show as text percentage instead */
+  .progress-bar-wrap { display: none; }
+
+  /* Score colours are important for report readability */
+  .score-display {
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+  }
+
+  /* Expand link hrefs */
+  a[href]::after {
+    content: " (" attr(href) ")";
+    font-size: 9pt;
+    color: #555 !important;
+  }
+  a[href^="#"]::after,
+  a[href^="javascript:"]::after {
+    content: "";
+  }
+}

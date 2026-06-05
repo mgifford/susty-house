@@ -1,0 +1,431 @@
+{
+  "categories": [
+    {
+      "key": "building_envelope",
+      "label": "Building Envelope",
+      "description": "The physical barriers between conditioned interior space and the outside environment.",
+      "items": [
+        {
+          "key": "attic_insulation",
+          "label": "Attic Insulation",
+          "guidance": "Insulating your attic is one of the most cost-effective ways to reduce heat loss in winter and heat gain in summer. Proper attic insulation can cut heating and cooling costs significantly. Even adding insulation on top of existing material improves performance.",
+          "weight": 10,
+          "budget_min": "limited",
+          "skill_min": "basic_diy",
+          "time_min": "weekends",
+          "ambition_levels": ["light_touch", "meaningful", "significant", "deep_green"],
+          "slider_labels": ["None", "Minimal", "Some", "Moderate", "Good", "Excellent"]
+        },
+        {
+          "key": "wall_insulation",
+          "label": "Wall Insulation",
+          "guidance": "Walls account for a large portion of a home's heat loss. Adding insulation inside wall cavities or as an exterior layer dramatically reduces energy use year-round. The method depends on your wall type and budget.",
+          "weight": 9,
+          "budget_min": "moderate",
+          "skill_min": "experienced",
+          "time_min": "extended",
+          "ambition_levels": ["meaningful", "significant", "deep_green"],
+          "slider_labels": ["None", "Minimal", "Some", "Moderate", "Good", "Excellent"]
+        },
+        {
+          "key": "basement_insulation",
+          "label": "Basement / Foundation Insulation",
+          "guidance": "Insulating basement walls or the rim joist reduces cold floors and heat loss through the foundation. It is a relatively affordable upgrade that improves comfort noticeably in colder climates.",
+          "weight": 8,
+          "budget_min": "limited",
+          "skill_min": "basic_diy",
+          "time_min": "weekends",
+          "ambition_levels": ["light_touch", "meaningful", "significant", "deep_green"],
+          "slider_labels": ["None", "Minimal", "Some", "Moderate", "Good", "Excellent"]
+        },
+        {
+          "key": "windows",
+          "label": "Windows",
+          "guidance": "Old or single-pane windows lose significant heat in winter and admit unwanted solar heat in summer. Upgrading to double or triple-pane windows with low-emissivity coatings cuts energy use and improves comfort near windows.",
+          "weight": 9,
+          "budget_min": "substantial",
+          "skill_min": "trade",
+          "time_min": "hired",
+          "ambition_levels": ["meaningful", "significant", "deep_green"],
+          "slider_labels": ["Single pane", "Old double pane", "Double pane", "Low-e double", "Triple pane", "High-performance triple"]
+        },
+        {
+          "key": "exterior_doors",
+          "label": "Exterior Doors",
+          "guidance": "Poorly insulated or ill-fitting exterior doors let cold air in and warm air out. Replacing an old door with an insulated steel or fibreglass door, or adding weatherstripping, makes a quick difference to comfort and energy bills.",
+          "weight": 6,
+          "budget_min": "moderate",
+          "skill_min": "basic_diy",
+          "time_min": "weekends",
+          "ambition_levels": ["light_touch", "meaningful", "significant", "deep_green"],
+          "slider_labels": ["Old/uninsulated", "Basic insulated", "Weatherstripped", "Good insulated", "High-performance", "Excellent/airtight"]
+        },
+        {
+          "key": "air_sealing",
+          "label": "Air Sealing",
+          "guidance": "Uncontrolled air leaks through gaps, cracks, and penetrations can account for 25–40% of heating and cooling losses. Sealing these leaks with caulk, spray foam, and weatherstripping is low-cost and high-impact.",
+          "weight": 8,
+          "budget_min": "limited",
+          "skill_min": "basic_diy",
+          "time_min": "weekends",
+          "ambition_levels": ["light_touch", "meaningful", "significant", "deep_green"],
+          "slider_labels": ["None done", "A few gaps sealed", "Some sealing done", "Systematic sealing", "Comprehensive sealing", "Blower-door tested/optimised"]
+        },
+        {
+          "key": "roofing_material",
+          "label": "Roofing Material",
+          "guidance": "When replacing your roof, choosing a cool or reflective roofing material reduces solar heat gain in warm climates. Metal and light-coloured surfaces reflect more sunlight than dark asphalt shingles, lowering cooling loads.",
+          "weight": 5,
+          "budget_min": "major",
+          "skill_min": "trade",
+          "time_min": "hired",
+          "ambition_levels": ["significant", "deep_green"],
+          "slider_labels": ["Dark asphalt (old)", "Dark asphalt (new)", "Mid-tone shingles", "Light-coloured shingles", "Metal / reflective", "Cool roof / green roof"]
+        },
+        {
+          "key": "crawlspace_insulation",
+          "label": "Crawlspace Insulation",
+          "guidance": "An uninsulated crawlspace allows cold, damp air to chill floors above and can increase heating costs substantially. Insulating the floor above the crawlspace or sealing and conditioning the crawlspace itself prevents moisture problems and improves comfort.",
+          "weight": 7,
+          "budget_min": "moderate",
+          "skill_min": "experienced",
+          "time_min": "weekends",
+          "ambition_levels": ["meaningful", "significant", "deep_green"],
+          "slider_labels": ["None", "Partial floor insulation", "Full floor insulation", "Sealed crawlspace", "Sealed + insulated walls", "Conditioned crawlspace"]
+        }
+      ]
+    },
+    {
+      "key": "heating_cooling",
+      "label": "Heating & Cooling",
+      "description": "Systems that control indoor temperature, including furnaces, heat pumps, air conditioning, and ventilation.",
+      "items": [
+        {
+          "key": "furnace_boiler",
+          "label": "Furnace / Boiler",
+          "guidance": "Your heating system is often the single largest energy user in your home. Upgrading from an old inefficient furnace to a modern high-efficiency unit or heat pump can dramatically reduce energy use and carbon emissions.",
+          "weight": 10,
+          "budget_min": "major",
+          "skill_min": "trade",
+          "time_min": "hired",
+          "ambition_levels": ["meaningful", "significant", "deep_green"],
+          "slider_labels": ["None/very old", "Pre-1990", "1990s unit", "2000s mid-eff", "High-efficiency", "Heat pump or best"]
+        },
+        {
+          "key": "heat_pump_air",
+          "label": "Air-Source Heat Pump",
+          "guidance": "Air-source heat pumps move heat rather than generate it, making them two to four times more efficient than electric resistance heating. Modern cold-climate models work effectively even in very cold temperatures.",
+          "weight": 9,
+          "budget_min": "substantial",
+          "skill_min": "trade",
+          "time_min": "hired",
+          "ambition_levels": ["significant", "deep_green"],
+          "slider_labels": ["None", "Considering it", "Getting quotes", "Planned/funded", "Partially installed", "Fully installed"]
+        },
+        {
+          "key": "heat_pump_ground",
+          "label": "Ground-Source Heat Pump",
+          "guidance": "Ground-source (geothermal) heat pumps use stable underground temperatures to deliver very high efficiency heating and cooling year-round. They require significant upfront investment and site assessment but deliver outstanding long-term savings.",
+          "weight": 8,
+          "budget_min": "major",
+          "skill_min": "trade",
+          "time_min": "hired",
+          "ambition_levels": ["significant", "deep_green"],
+          "slider_labels": ["None", "Considering it", "Site assessed", "Planned/permitted", "In progress", "Fully installed"]
+        },
+        {
+          "key": "air_conditioning",
+          "label": "Air Conditioning",
+          "guidance": "If you use air conditioning, choosing a high-efficiency unit with a good SEER rating reduces electricity consumption significantly. Proper sizing and maintenance are just as important as efficiency ratings.",
+          "weight": 6,
+          "budget_min": "substantial",
+          "skill_min": "trade",
+          "time_min": "hired",
+          "ambition_levels": ["meaningful", "significant", "deep_green"],
+          "slider_labels": ["None / window unit", "Old central AC", "Standard central AC", "Efficient central AC", "High-SEER unit", "Variable-speed/best"]
+        },
+        {
+          "key": "hrv_erv",
+          "label": "Heat Recovery Ventilator (HRV/ERV)",
+          "guidance": "As homes become more airtight, controlled ventilation with heat recovery becomes essential. An HRV or ERV exchanges stale indoor air for fresh outdoor air while recovering 70–85% of the heat, keeping energy losses low.",
+          "weight": 7,
+          "budget_min": "moderate",
+          "skill_min": "trade",
+          "time_min": "hired",
+          "ambition_levels": ["meaningful", "significant", "deep_green"],
+          "slider_labels": ["None", "Basic exhaust fan", "Standalone ventilation", "HRV installed", "HRV optimised", "HRV + smart controls"]
+        },
+        {
+          "key": "smart_thermostat",
+          "label": "Smart Thermostat",
+          "guidance": "A smart or programmable thermostat lets you reduce heating and cooling when the house is empty or everyone is asleep. Many models learn your schedule automatically and can save 10–15% on heating and cooling bills.",
+          "weight": 5,
+          "budget_min": "limited",
+          "skill_min": "novice",
+          "time_min": "limited",
+          "ambition_levels": ["light_touch", "meaningful", "significant", "deep_green"],
+          "slider_labels": ["None", "Old manual", "Basic programmable", "Programmable", "Smart thermostat", "Learning/zoned smart"]
+        },
+        {
+          "key": "duct_sealing",
+          "label": "Duct Sealing",
+          "guidance": "Leaky ducts in forced-air heating and cooling systems can waste 20–30% of the conditioned air before it reaches living spaces. Sealing ducts with mastic or foil tape pays back quickly and improves comfort throughout the house.",
+          "weight": 6,
+          "budget_min": "limited",
+          "skill_min": "basic_diy",
+          "time_min": "weekends",
+          "ambition_levels": ["light_touch", "meaningful", "significant", "deep_green"],
+          "slider_labels": ["Not applicable / no ducts", "Leaky (no sealing)", "Some sealing done", "Most accessible ducts sealed", "All accessible ducts sealed", "Professionally tested/sealed"]
+        }
+      ]
+    },
+    {
+      "key": "hot_water",
+      "label": "Hot Water",
+      "description": "Systems for heating domestic hot water, which is typically the second or third largest energy end use in a home.",
+      "items": [
+        {
+          "key": "tank_water_heater",
+          "label": "Tank Water Heater",
+          "guidance": "Water heating accounts for roughly 15–20% of home energy use. If you have an older tank water heater, replacing it with a high-efficiency model or heat pump water heater can substantially cut energy costs.",
+          "weight": 7,
+          "budget_min": "moderate",
+          "skill_min": "trade",
+          "time_min": "hired",
+          "ambition_levels": ["meaningful", "significant", "deep_green"],
+          "slider_labels": ["Very old/inefficient", "Pre-2000", "Standard tank", "Newer standard", "High-efficiency tank", "Heat pump or solar"]
+        },
+        {
+          "key": "tankless_water_heater",
+          "label": "Tankless (On-Demand) Water Heater",
+          "guidance": "Tankless water heaters heat water only when needed, eliminating standby losses from a storage tank. They can be more efficient than conventional tanks, especially for smaller households with lower hot water demand.",
+          "weight": 7,
+          "budget_min": "substantial",
+          "skill_min": "trade",
+          "time_min": "hired",
+          "ambition_levels": ["meaningful", "significant", "deep_green"],
+          "slider_labels": ["None", "Considering it", "Getting quotes", "Planned/funded", "Installed (gas)", "Installed (electric)"]
+        },
+        {
+          "key": "heat_pump_water_heater",
+          "label": "Heat Pump Water Heater",
+          "guidance": "A heat pump water heater uses electricity to move heat from surrounding air into the water, making it two to three times more efficient than a standard electric resistance heater. It works best in unconditioned spaces such as basements or garages.",
+          "weight": 8,
+          "budget_min": "substantial",
+          "skill_min": "trade",
+          "time_min": "hired",
+          "ambition_levels": ["meaningful", "significant", "deep_green"],
+          "slider_labels": ["None", "Considering it", "Getting quotes", "Planned/funded", "In progress", "Fully installed"]
+        },
+        {
+          "key": "solar_thermal",
+          "label": "Solar Thermal Hot Water",
+          "guidance": "Solar thermal collectors on the roof preheat water before it enters your hot water system, reducing the energy needed to reach the desired temperature. In sunny climates, a solar thermal system can provide 50–80% of domestic hot water needs.",
+          "weight": 7,
+          "budget_min": "major",
+          "skill_min": "trade",
+          "time_min": "hired",
+          "ambition_levels": ["significant", "deep_green"],
+          "slider_labels": ["None", "Considering it", "Site assessed", "Planned/permitted", "Partially installed", "Fully installed"]
+        }
+      ]
+    },
+    {
+      "key": "renewable_energy",
+      "label": "Renewable Energy",
+      "description": "On-site generation and storage of clean energy, plus connection to renewable electricity programmes.",
+      "items": [
+        {
+          "key": "solar_pv",
+          "label": "Solar Photovoltaic (PV) Panels",
+          "guidance": "Solar PV panels convert sunlight into electricity and are one of the most impactful upgrades for reducing energy bills and carbon emissions. Costs have dropped dramatically in recent years and payback periods are often 5–10 years.",
+          "weight": 9,
+          "budget_min": "major",
+          "skill_min": "trade",
+          "time_min": "hired",
+          "ambition_levels": ["significant", "deep_green"],
+          "slider_labels": ["None", "Considering it", "Partially funded", "Planned/permitted", "Partially installed", "Fully installed"]
+        },
+        {
+          "key": "battery_storage",
+          "label": "Battery Storage",
+          "guidance": "Home battery systems store excess solar electricity for use at night or during outages. They increase self-consumption of solar power and provide resilience when the grid goes down.",
+          "weight": 7,
+          "budget_min": "major",
+          "skill_min": "trade",
+          "time_min": "hired",
+          "ambition_levels": ["significant", "deep_green"],
+          "slider_labels": ["None", "Considering it", "Getting quotes", "Planned/funded", "In progress", "Fully installed"]
+        },
+        {
+          "key": "ev_charger",
+          "label": "EV Charging",
+          "guidance": "If you drive or plan to drive an electric vehicle, installing a dedicated Level 2 home charger allows overnight charging at a convenient rate. Pairing EV charging with solar can eliminate most transport fuel costs.",
+          "weight": 6,
+          "budget_min": "moderate",
+          "skill_min": "trade",
+          "time_min": "hired",
+          "ambition_levels": ["meaningful", "significant", "deep_green"],
+          "slider_labels": ["None", "Considering", "Level 1 outlet", "Dedicated circuit", "Level 2 charger", "Smart Level 2 + solar"]
+        },
+        {
+          "key": "small_wind",
+          "label": "Small Wind Turbine",
+          "guidance": "Small wind turbines can complement solar generation in windy rural locations. They require sufficient wind resources, setback space, and local permits, making them suitable only for select properties.",
+          "weight": 4,
+          "budget_min": "major",
+          "skill_min": "trade",
+          "time_min": "hired",
+          "ambition_levels": ["significant", "deep_green"],
+          "slider_labels": ["None", "Site assessed", "Permits in progress", "Planned/funded", "In progress", "Fully installed"]
+        },
+        {
+          "key": "green_power_tariff",
+          "label": "Green Power Tariff",
+          "guidance": "Many utilities offer green electricity tariffs that supply power from certified renewable sources. This is often the lowest-cost way to reduce the carbon footprint of your electricity use without installing generation equipment.",
+          "weight": 3,
+          "budget_min": "limited",
+          "skill_min": "novice",
+          "time_min": "limited",
+          "ambition_levels": ["light_touch", "meaningful", "significant", "deep_green"],
+          "slider_labels": ["No green tariff", "Considering", "Partial green tariff", "50% renewable", "75% renewable", "100% renewable energy"]
+        }
+      ]
+    },
+    {
+      "key": "water_efficiency",
+      "label": "Water Efficiency",
+      "description": "Reducing indoor and outdoor water consumption through efficient fixtures, harvesting, and landscape choices.",
+      "items": [
+        {
+          "key": "low_flow_fixtures",
+          "label": "Low-Flow Taps & Showerheads",
+          "guidance": "Installing low-flow aerators on taps and a water-efficient showerhead is one of the cheapest and quickest water-saving upgrades. Modern low-flow showerheads maintain good pressure while using significantly less water.",
+          "weight": 4,
+          "budget_min": "limited",
+          "skill_min": "novice",
+          "time_min": "limited",
+          "ambition_levels": ["light_touch", "meaningful", "significant", "deep_green"],
+          "slider_labels": ["None", "Some aerators", "Half replaced", "Most replaced", "All replaced", "Low-flow + greywater ready"]
+        },
+        {
+          "key": "low_flow_toilet",
+          "label": "Low-Flow Toilets",
+          "guidance": "Toilets are the largest indoor water user in most homes. Replacing an old high-volume toilet with a modern dual-flush or ultra-low-flow model can cut toilet water use by 50% or more.",
+          "weight": 5,
+          "budget_min": "limited",
+          "skill_min": "basic_diy",
+          "time_min": "weekends",
+          "ambition_levels": ["light_touch", "meaningful", "significant", "deep_green"],
+          "slider_labels": ["Old 13L", "Old 6L", "Dual-flush older", "Dual-flush modern", "Ultra-low 4.8L", "Dual-flush + grey"]
+        },
+        {
+          "key": "rainwater_harvesting",
+          "label": "Rainwater Harvesting",
+          "guidance": "Collecting roof runoff in rain barrels or cisterns provides free water for garden irrigation and, where permitted, toilet flushing. Even a simple rain barrel connected to a downspout can capture hundreds of litres per rainfall event.",
+          "weight": 4,
+          "budget_min": "moderate",
+          "skill_min": "basic_diy",
+          "time_min": "weekends",
+          "ambition_levels": ["meaningful", "significant", "deep_green"],
+          "slider_labels": ["None", "One rain barrel", "Multiple barrels", "Small cistern", "Large cistern", "Integrated harvesting system"]
+        },
+        {
+          "key": "greywater_reuse",
+          "label": "Greywater Reuse",
+          "guidance": "Greywater from sinks, showers, and laundry can be treated and reused for toilet flushing or outdoor irrigation, significantly reducing mains water demand. Systems range from simple laundry-to-landscape setups to whole-house treatment systems.",
+          "weight": 4,
+          "budget_min": "substantial",
+          "skill_min": "trade",
+          "time_min": "hired",
+          "ambition_levels": ["significant", "deep_green"],
+          "slider_labels": ["None", "Considering it", "Site assessed", "Laundry-to-landscape", "Full greywater system", "Greywater + recycled water"]
+        },
+        {
+          "key": "drought_tolerant_landscaping",
+          "label": "Drought-Tolerant Landscaping",
+          "guidance": "Replacing water-hungry lawns and plants with native or drought-tolerant species can reduce outdoor water use by 50–75%. Mulching garden beds also retains soil moisture and reduces the need for irrigation.",
+          "weight": 3,
+          "budget_min": "limited",
+          "skill_min": "novice",
+          "time_min": "weekends",
+          "ambition_levels": ["light_touch", "meaningful", "significant", "deep_green"],
+          "slider_labels": ["All lawn/thirsty plants", "Some drought-tolerant plants", "Half converted", "Mostly drought-tolerant", "Fully drought-tolerant", "Native/xeriscaped + mulched"]
+        },
+        {
+          "key": "smart_irrigation",
+          "label": "Smart Irrigation",
+          "guidance": "Smart irrigation controllers adjust watering schedules based on local weather data and soil moisture sensors, preventing overwatering. They can reduce outdoor water use by 30–50% compared to fixed-timer systems.",
+          "weight": 3,
+          "budget_min": "moderate",
+          "skill_min": "basic_diy",
+          "time_min": "weekends",
+          "ambition_levels": ["meaningful", "significant", "deep_green"],
+          "slider_labels": ["No irrigation system", "Fixed-timer system", "Basic programmable", "Weather-adjusted", "Smart controller", "Smart + soil sensors"]
+        }
+      ]
+    },
+    {
+      "key": "lighting_appliances",
+      "label": "Lighting & Appliances",
+      "description": "Efficient lighting, major appliances, and smart controls that reduce plug load and standby consumption.",
+      "items": [
+        {
+          "key": "led_lighting",
+          "label": "LED Lighting",
+          "guidance": "LED bulbs use 75–80% less electricity than incandescent bulbs and last 15–25 times longer. Replacing all bulbs in your home with LEDs is one of the fastest payback upgrades available.",
+          "weight": 5,
+          "budget_min": "limited",
+          "skill_min": "novice",
+          "time_min": "limited",
+          "ambition_levels": ["light_touch", "meaningful", "significant", "deep_green"],
+          "slider_labels": ["All incandescent", "Mostly incandescent", "Half LED", "Mostly LED", "All LED", "All LED + smart controls"]
+        },
+        {
+          "key": "efficient_fridge",
+          "label": "Efficient Refrigerator",
+          "guidance": "Refrigerators run 24 hours a day and older models can consume two to three times the electricity of a modern energy-efficient unit. When replacing a fridge, look for the most efficient model in the right size for your household.",
+          "weight": 4,
+          "budget_min": "moderate",
+          "skill_min": "novice",
+          "time_min": "limited",
+          "ambition_levels": ["meaningful", "significant", "deep_green"],
+          "slider_labels": ["Old inefficient", "Pre-2000", "2000s standard", "Energy-efficient", "Best-in-class", "Best + smart"]
+        },
+        {
+          "key": "efficient_washer",
+          "label": "Efficient Clothes Washer",
+          "guidance": "Front-loading and high-efficiency top-loading washing machines use significantly less water and energy than older agitator-style machines. Washing in cold water further reduces energy use with no loss of cleaning performance for most loads.",
+          "weight": 4,
+          "budget_min": "moderate",
+          "skill_min": "novice",
+          "time_min": "limited",
+          "ambition_levels": ["meaningful", "significant", "deep_green"],
+          "slider_labels": ["Old top-loader agitator", "Older top-loader", "Standard modern", "High-efficiency", "Best-in-class HE", "Best HE + cold wash always"]
+        },
+        {
+          "key": "efficient_dishwasher",
+          "label": "Efficient Dishwasher",
+          "guidance": "A modern energy-efficient dishwasher uses less water and energy per wash than handwashing dishes. Running full loads and using the air-dry setting rather than heat drying reduces energy use further.",
+          "weight": 3,
+          "budget_min": "moderate",
+          "skill_min": "novice",
+          "time_min": "limited",
+          "ambition_levels": ["meaningful", "significant", "deep_green"],
+          "slider_labels": ["No dishwasher / old", "Older standard", "Standard modern", "Energy-efficient", "Best-in-class", "Best + optimised use"]
+        },
+        {
+          "key": "smart_power_strips",
+          "label": "Smart Power Strips",
+          "guidance": "Many electronics draw power even when switched off or in standby mode. Smart power strips automatically cut power to devices that are not in use, eliminating this standby or 'phantom' load throughout the home.",
+          "weight": 2,
+          "budget_min": "limited",
+          "skill_min": "novice",
+          "time_min": "limited",
+          "ambition_levels": ["light_touch", "meaningful", "significant", "deep_green"],
+          "slider_labels": ["None", "One strip", "Key devices", "Most devices", "All devices", "All + smart monitoring"]
+        }
+      ]
+    }
+  ]
+}

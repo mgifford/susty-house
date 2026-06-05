@@ -1,0 +1,77 @@
+{
+  "nav.home": "Home",
+  "nav.profile": "House Profile",
+  "nav.assessment": "Assessment",
+  "nav.results": "Results",
+
+  "home.title": "Your House Assessments",
+  "home.new_profile": "New Assessment",
+  "home.import_yaml": "Import from YAML",
+  "home.no_profiles": "No assessments yet. Start your first one!",
+  "home.delete_confirm": "Delete this house profile? This cannot be undone.",
+
+  "profile.title": "House Profile",
+  "profile.nickname": "House nickname",
+  "profile.year_built": "Year built",
+  "profile.floor_area": "Floor area (m²)",
+  "profile.storeys": "Number of storeys",
+  "profile.construction_type": "Construction type",
+  "profile.climate_zone": "Climate zone",
+  "profile.occupants": "Number of occupants",
+  "profile.save": "Save Profile",
+  "profile.cancel": "Cancel",
+
+  "profile.type.wood_frame": "Wood frame",
+  "profile.type.masonry": "Masonry / brick",
+  "profile.type.manufactured": "Manufactured / mobile",
+  "profile.type.other": "Other",
+
+  "profile.zone.cold": "Cold",
+  "profile.zone.temperate": "Temperate",
+  "profile.zone.hot_dry": "Hot-dry",
+  "profile.zone.hot_humid": "Hot-humid",
+  "profile.zone.mixed": "Mixed",
+
+  "capacity.budget.limited": "Limited (under $1,000)",
+  "capacity.budget.moderate": "Moderate ($1,000–$10,000)",
+  "capacity.budget.substantial": "Substantial ($10,000–$50,000)",
+  "capacity.budget.major": "Major investment (over $50,000)",
+
+  "capacity.time.limited": "Very limited (under 1 weekend/month)",
+  "capacity.time.weekends": "Weekends available (1–2/month)",
+  "capacity.time.extended": "Extended time (vacation or sabbatical)",
+  "capacity.time.hired": "Hiring out the work",
+
+  "capacity.skill.novice": "Complete novice",
+  "capacity.skill.basic_diy": "Comfortable with basic DIY",
+  "capacity.skill.experienced": "Experienced DIYer",
+  "capacity.skill.trade": "Trade-skilled / professional",
+
+  "capacity.ambition.light_touch": "Light touch (quick wins only)",
+  "capacity.ambition.meaningful": "Meaningful improvements",
+  "capacity.ambition.significant": "Significant retrofit",
+  "capacity.ambition.deep_green": "Deep green (near net-zero)",
+
+  "assessment.title": "Sustainability Assessment",
+  "assessment.not_applicable": "Not applicable",
+  "assessment.notes": "Notes (optional)",
+  "assessment.progress": "Progress",
+  "assessment.reset_confirm": "Reset this assessment? All ratings will be cleared.",
+  "assessment.complete": "View Results",
+
+  "results.title": "Assessment Results",
+  "results.overall_score": "Overall Sustainability Score",
+  "results.category_scores": "Category Scores",
+  "results.recommendations": "Recommended Next Steps",
+  "results.export_yaml": "Export YAML",
+  "results.export_html": "Export HTML Report",
+
+  "error.idb_unavailable": "Browser storage is limited. Using fallback mode.",
+  "error.import_invalid": "Could not import file. Please check it is a valid YAML export.",
+  "error.import_schema_version": "This file was created with an incompatible version of the app.",
+  "error.required_field": "This field is required.",
+
+  "aria.score_badge": "Current sustainability score",
+  "aria.progress_bar": "Assessment completion progress",
+  "aria.slider_value": "Current rating"
+}
