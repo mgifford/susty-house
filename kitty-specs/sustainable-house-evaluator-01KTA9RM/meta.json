@@ -6,7 +6,7 @@
   "mission_slug": "sustainable-house-evaluator-01KTA9RM",
   "mission_type": "software-dev",
   "slug": "sustainable-house-evaluator-01KTA9RM",
-  "target_branch": "master",
+  "target_branch": "main",
   "vcs": "git",
   "source_description": "A progressive web app for structured house sustainability assessment inspired by WCAG-EM. Guides homeowners and professionals through a multi-category evaluation (envelope, HVAC, hot water, renewables, water efficiency, appliances), produces a weighted score with capacity-filtered recommendations, stores data locally, and exports/imports .yaml and .html reports. Offline-first, no server required."
 }
