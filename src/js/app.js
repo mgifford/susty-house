@@ -5,6 +5,7 @@
 import { registerServiceWorker } from './pwa.js';
 import { openDB } from './db.js';
 import { getState, setState, subscribe } from './store.js';
+import { loadCatalogue } from './store.js';
 
 // ---------- View Router -----------------------------------
 
@@ -66,6 +67,9 @@ async function boot() {
 
     // Open IndexedDB
     await openDB();
+
+    // Load item catalogue and UI strings
+    await loadCatalogue();
 
     // Lazily import view modules
     const [
