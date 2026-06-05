@@ -1,0 +1,177 @@
+work_packages:
+  - id: WP01
+    title: "Project Foundation & PWA Shell"
+    dependencies: []
+    owned_files:
+      - "index.html"
+      - "manifest.json"
+      - "sw.js"
+      - "README.md"
+      - "src/css/main.css"
+      - "src/css/print.css"
+      - "src/js/app.js"
+      - "src/js/pwa.js"
+      - ".github/workflows/pages.yml"
+    requirement_refs:
+      - FR-018
+      - FR-019
+      - NFR-001
+      - NFR-003
+      - NFR-006
+    subtasks:
+      - T001
+      - T002
+      - T003
+      - T004
+      - T005
+      - T006
+      - T007
+    prompt_file: "tasks/WP01-project-foundation-pwa-shell.md"
+
+  - id: WP02
+    title: "Data Layer — items.json and IndexedDB"
+    dependencies:
+      - WP01
+    owned_files:
+      - "src/data/items.json"
+      - "src/data/strings.json"
+      - "src/js/db.js"
+      - "src/js/store.js"
+    requirement_refs:
+      - FR-016
+      - FR-017
+      - NFR-002
+      - NFR-010
+      - C-001
+      - C-003
+      - C-005
+    subtasks:
+      - T008
+      - T009
+      - T010
+      - T011
+    prompt_file: "tasks/WP02-data-layer-items-indexeddb.md"
+
+  - id: WP03
+    title: "House Profile and Capacity Forms"
+    dependencies:
+      - WP02
+    owned_files:
+      - "src/js/profiles.js"
+      - "src/js/views/home.js"
+      - "src/js/views/profile.js"
+    requirement_refs:
+      - FR-001
+      - FR-002
+      - FR-017
+      - NFR-005
+      - NFR-006
+    subtasks:
+      - T012
+      - T013
+      - T014
+      - T015
+    prompt_file: "tasks/WP03-house-profile-capacity-forms.md"
+
+  - id: WP04
+    title: "Assessment Walkthrough UI"
+    dependencies:
+      - WP03
+    owned_files:
+      - "src/js/assessment.js"
+      - "src/js/views/assessment.js"
+    requirement_refs:
+      - FR-003
+      - FR-004
+      - FR-005
+      - FR-009
+      - FR-019
+      - FR-020
+      - NFR-004
+      - NFR-005
+    subtasks:
+      - T016
+      - T017
+      - T018
+      - T019
+      - T020
+      - T021
+    prompt_file: "tasks/WP04-assessment-walkthrough-ui.md"
+
+  - id: WP05
+    title: "Scoring and Recommendations Engine"
+    dependencies:
+      - WP04
+    owned_files:
+      - "src/js/scoring.js"
+      - "src/js/recommendations.js"
+      - "src/js/views/results.js"
+    requirement_refs:
+      - FR-006
+      - FR-007
+      - FR-008
+      - NFR-004
+    subtasks:
+      - T022
+      - T023
+      - T024
+      - T025
+    prompt_file: "tasks/WP05-scoring-recommendations-engine.md"
+
+  - id: WP06
+    title: "YAML Import and Export"
+    dependencies:
+      - WP05
+    owned_files:
+      - "src/js/export-yaml.js"
+      - "src/js/import-yaml.js"
+    requirement_refs:
+      - FR-010
+      - FR-012
+      - FR-013
+      - NFR-008
+      - C-005
+    subtasks:
+      - T026
+      - T027
+      - T028
+      - T029
+    prompt_file: "tasks/WP06-yaml-import-export.md"
+
+  - id: WP07
+    title: "HTML Report Generation"
+    dependencies:
+      - WP05
+    owned_files:
+      - "src/js/export-html.js"
+    requirement_refs:
+      - FR-011
+      - FR-014
+      - FR-015
+      - NFR-009
+    subtasks:
+      - T030
+      - T031
+      - T032
+      - T033
+    prompt_file: "tasks/WP07-html-report-generation.md"
+
+  - id: WP08
+    title: "Accessibility Audit and Polish"
+    dependencies:
+      - WP06
+      - WP07
+    owned_files:
+      - "src/css/overrides.css"
+      - "kitty-specs/sustainable-house-evaluator-01KTA9RM/checklists/final-audit.md"
+    requirement_refs:
+      - NFR-005
+      - NFR-006
+      - NFR-007
+      - NFR-009
+    subtasks:
+      - T034
+      - T035
+      - T036
+      - T037
+    prompt_file: "tasks/WP08-accessibility-audit-polish.md"
