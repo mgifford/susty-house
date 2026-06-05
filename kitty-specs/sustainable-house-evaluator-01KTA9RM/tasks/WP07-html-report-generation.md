@@ -202,3 +202,7 @@ with no history shows no history section; download button triggers file download
 ```bash
 spec-kitty agent action implement WP07 --agent copilot
 ```
+
+## Activity Log
+
+- 2026-06-05T19:18:14Z – unknown – Moved to for_review
