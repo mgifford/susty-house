@@ -16,6 +16,8 @@ const VIEWS = ['view-loading', 'view-home', 'view-profile', 'view-assessment', '
  * @param {string} viewId  - the section id (without #)
  */
 export function showView(viewId) {
+  setState({ currentView: viewId.replace('view-', '') });
+
   VIEWS.forEach(id => {
     const el = document.getElementById(id);
     if (!el) return;
@@ -33,6 +35,17 @@ export function showView(viewId) {
       el.classList.remove('active');
     }
   });
+
+  // Trigger view-specific renders
+  if (viewId === 'view-assessment') {
+    import('./views/assessment.js').then(m => m.renderAssessmentView());
+  }
+  if (viewId === 'view-home') {
+    import('./views/home.js').then(m => m.renderHomeView?.());
+  }
+  if (viewId === 'view-results') {
+    import('./views/results.js').then(m => m.renderResultsView?.());
+  }
 }
 
 export function hideAllViews() {
