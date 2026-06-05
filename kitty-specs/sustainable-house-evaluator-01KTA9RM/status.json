@@ -1,7 +1,7 @@
 {
-  "event_count": 15,
-  "last_event_id": "01KTCAM9FD6MA1CSPH3FTMD28A",
-  "materialized_at": "2026-06-05T16:42:28.205930+00:00",
+  "event_count": 16,
+  "last_event_id": "01KTCDCKX4FTFPRE14QNHA70XS",
+  "materialized_at": "2026-06-05T17:30:42.468193+00:00",
   "mission_number": "",
   "mission_slug": "sustainable-house-evaluator-01KTA9RM",
   "mission_type": "software-dev",
@@ -11,8 +11,8 @@
     "canceled": 0,
     "claimed": 0,
     "done": 0,
-    "for_review": 0,
-    "in_progress": 1,
+    "for_review": 1,
+    "in_progress": 0,
     "in_review": 0,
     "planned": 6
   },
@@ -25,11 +25,11 @@
       "last_transition_at": "2026-06-05T16:18:49.179375+00:00"
     },
     "WP02": {
-      "actor": "copilot",
+      "actor": "user",
       "force_count": 1,
-      "lane": "in_progress",
-      "last_event_id": "01KTCAM9FD6MA1CSPH3FTMD28A",
-      "last_transition_at": "2026-06-05T16:42:28.205930+00:00"
+      "lane": "for_review",
+      "last_event_id": "01KTCDCKX4FTFPRE14QNHA70XS",
+      "last_transition_at": "2026-06-05T17:30:42.468193+00:00"
     },
     "WP03": {
       "actor": "finalize-tasks",
