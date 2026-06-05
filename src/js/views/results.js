@@ -1,4 +1,6 @@
 /* Sustainable House Evaluator — Results View (WP05) */
+import * as db from '../db.js';
+import { exportToYAML } from '../export-yaml.js';
 import { getState, subscribe } from '../store.js';
 import { computeCategoryScore } from '../scoring.js';
 import { getRecommendations } from '../recommendations.js';
@@ -231,10 +233,19 @@ export function renderResultsView() {
     window.App.showView('view-assessment');
   });
 
-  section.querySelector('#btn-export-yaml')?.addEventListener('click', () => {
-    import('../export-yaml.js')
-      .then(m => m.exportYAML())
-      .catch(() => window.App.showToast('YAML export coming soon (WP06)'));
+  section.querySelector('#btn-export-yaml')?.addEventListener('click', async () => {
+    try {
+      const { activeProfile, activeProfileId } = getState();
+      if (!activeProfile || !activeProfileId) {
+        throw new Error('A saved house profile is required before you can export YAML.');
+      }
+
+      const assessments = await db.getAssessmentsForProfile(activeProfileId);
+      exportToYAML(activeProfile, assessments);
+      window.App.showToast('YAML export started.');
+    } catch (error) {
+      window.App.showToast(error.message);
+    }
   });
 
   section.querySelector('#btn-export-html')?.addEventListener('click', () => {

@@ -90,17 +90,20 @@ async function boot() {
       { initProfileView },
       { initAssessmentView },
       { initResultsView },
+      { initImportHandler },
     ] = await Promise.all([
       import('./views/home.js'),
       import('./views/profile.js'),
       import('./views/assessment.js'),
       import('./views/results.js'),
+      import('./import-yaml.js'),
     ]);
 
     initHomeView();
     initProfileView();
     initAssessmentView();
     initResultsView();
+    initImportHandler();
 
     // Restore last active profile
     const lastProfileId = localStorage.getItem('lastActiveProfileId');

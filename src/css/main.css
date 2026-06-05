@@ -416,6 +416,10 @@ input[type="range"]:disabled {
   animation: toast-in 0.2s ease, toast-out 0.2s ease 2.5s forwards;
   pointer-events: none;
 }
+
+#import-yaml-alert[hidden] {
+  display: none;
+}
 @keyframes toast-in  { from { opacity:0; transform: translateX(-50%) translateY(8px); } }
 @keyframes toast-out { to   { opacity:0; transform: translateX(-50%) translateY(8px); } }
 
