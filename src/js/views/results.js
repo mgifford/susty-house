@@ -1,5 +1,6 @@
 /* Sustainable House Evaluator — Results View (WP05) */
 import * as db from '../db.js';
+import { exportToHTML } from '../export-html.js';
 import { exportToYAML } from '../export-yaml.js';
 import { getState, subscribe } from '../store.js';
 import { computeCategoryScore } from '../scoring.js';
@@ -248,9 +249,26 @@ export function renderResultsView() {
     }
   });
 
-  section.querySelector('#btn-export-html')?.addEventListener('click', () => {
-    import('../export-html.js')
-      .then(m => m.exportHTML())
-      .catch(() => window.App.showToast('HTML export coming soon (WP07)'));
+  section.querySelector('#btn-export-html')?.addEventListener('click', async () => {
+    try {
+      const state = getState();
+      if (!state.activeProfile || !state.activeProfileId || !state.activeAssessment || !state.activeAssessmentId) {
+        throw new Error('A saved house profile and assessment are required before you can export HTML.');
+      }
+
+      const allAssessments = await db.getAssessmentsForProfile(state.activeProfileId);
+      const history = allAssessments.filter((assessment) => assessment.id !== state.activeAssessmentId);
+
+      exportToHTML(
+        state.activeProfile,
+        state.activeAssessment,
+        history,
+        state.itemCatalogue,
+        recommendations
+      );
+      window.App.showToast('HTML report export started.');
+    } catch (error) {
+      window.App.showToast(error instanceof Error ? error.message : 'Could not export the HTML report.');
+    }
   });
 }
