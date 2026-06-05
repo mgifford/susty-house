@@ -22,7 +22,7 @@ subtasks:
 - T005
 - T006
 - T007
-shell_pid: '77192'
+shell_pid: "77192"
 history: []
 authoritative_surface: src/
 execution_mode: code_change
@@ -37,6 +37,7 @@ owned_files:
 - src/js/pwa.js
 - .github/workflows/pages.yml
 tags: []
+agent: "copilot"
 ---
 
 # WP01 — Project Foundation & PWA Shell
@@ -331,3 +332,7 @@ available.
 ```bash
 spec-kitty agent action implement WP01 --agent copilot
 ```
+
+## Activity Log
+
+- 2026-06-05T12:17:25Z – copilot – shell_pid=77192 – Assigned agent via action command
