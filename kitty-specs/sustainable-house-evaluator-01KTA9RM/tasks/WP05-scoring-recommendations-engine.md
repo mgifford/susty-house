@@ -201,3 +201,8 @@ without a page reload; DevTools shows no layout thrash
 ```bash
 spec-kitty agent action implement WP05 --agent copilot
 ```
+
+## Activity Log
+
+- 2026-06-05T18:42:18Z – unknown – Moved to for_review
+- 2026-06-05T18:42:20Z – unknown – Moved to approved

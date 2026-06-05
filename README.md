@@ -5,7 +5,7 @@ Inspired by the WCAG-EM structured evaluation methodology, it guides homeowners 
 professionals through a room-by-room sustainability review with scored categories, capacity-
 filtered recommendations, and exportable reports.
 
-**Live app**: https://mike.gifford.github.io/susty-house/ *(after GitHub Pages deployment)*
+**Live app**: https://mgifford.github.io/susty-house/
 
 ---
 
