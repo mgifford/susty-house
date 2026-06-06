@@ -36,7 +36,7 @@ function render(state) {
   `;
 
   // Wire events
-  section.querySelector('#btn-new-profile').addEventListener('click', () => {
+  section.querySelector('#btn-new-profile, #btn-new-profile-empty').addEventListener('click', () => {
     setState({ activeProfileId: null, activeProfile: null, currentView: 'profile' });
     window.App.showView('view-profile');
   });

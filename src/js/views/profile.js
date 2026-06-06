@@ -283,3 +283,8 @@ function goHome() {
 function esc(str) {
   return String(str ?? '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
 }
+
+export function renderProfileView() {
+  renderForm(getState());
+}
+

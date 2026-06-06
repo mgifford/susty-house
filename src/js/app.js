@@ -43,6 +43,9 @@ export function showView(viewId) {
   if (viewId === 'view-home') {
     import('./views/home.js').then(m => m.renderHomeView?.());
   }
+  if (viewId === 'view-profile') {
+    import('./views/profile.js').then(m => m.renderProfileView?.());
+  }
   if (viewId === 'view-results') {
     import('./views/results.js').then(m => m.renderResultsView?.());
   }

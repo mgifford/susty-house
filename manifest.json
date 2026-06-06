@@ -2,11 +2,8 @@
   "name": "Sustainable House Evaluator",
   "short_name": "SustyHouse",
   "description": "Assess and improve your home's sustainability with a guided, structured evaluation.",
-  "start_url": "/susty-house/",
-  "scope": "/susty-house/",
-  "display": "standalone",
-  "theme_color": "#2d6a4f",
-  "background_color": "#ffffff",
+  "start_url": "./",
+  "scope": "./",
   "icons": [
     {
       "src": "src/icons/icon-192.png",

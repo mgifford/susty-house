@@ -1,0 +1,12 @@
+{
+  "name": "susty-house",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "npx -y serve . --cors --listen 3000",
+    "test": "npx -y playwright test"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.45.0"
+  }
+}
