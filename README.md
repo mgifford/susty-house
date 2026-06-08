@@ -1,17 +1,10 @@
 ---
-
 title: Susty House
-
 emoji: 🏠
-
 colorFrom: green
-
 colorTo: blue
-
 sdk: docker
-
 app_port: 7860
-
 ---
 
 # Sustainable House Evaluator
