@@ -26,3 +26,9 @@
 .kittify/missions/__pycache__/
 .kittify/runtime/
 .kittify/workspaces/
+node_modules/
+test-results/
+.cache/
+__pycache__/
+*.pyc
+.DS_Store
