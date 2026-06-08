@@ -8,8 +8,7 @@ export function registerServiceWorker() {
     return;
   }
 
-  const basePath = location.pathname.startsWith('/susty-house/') ? '/susty-house' : '';
-  navigator.serviceWorker.register(`${basePath}/sw.js`)
+  navigator.serviceWorker.register('./sw.js')
     .then(registration => {
       console.log('[PWA] Service worker registered:', registration.scope);
 

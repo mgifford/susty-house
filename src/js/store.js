@@ -49,10 +49,9 @@ export function subscribe(fn) {
 
 export async function loadCatalogue() {
   try {
-    const basePath = location.pathname.startsWith('/susty-house/') ? '/susty-house' : '';
     const [itemsRes, stringsRes] = await Promise.all([
-      fetch(`${basePath}/src/data/items.json`),
-      fetch(`${basePath}/src/data/strings.json`),
+      fetch('./src/data/items.json'),
+      fetch('./src/data/strings.json'),
     ]);
     const itemsData = await itemsRes.json();
     const stringsData = await stringsRes.json();
