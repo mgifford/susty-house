@@ -1,5 +1,4 @@
 ---
-title: Susty House
 emoji: 🏠
 colorFrom: green
 colorTo: blue
@@ -14,7 +13,7 @@ Inspired by the WCAG-EM structured evaluation methodology, it guides homeowners 
 professionals through a room-by-room sustainability review with scored categories, capacity-
 filtered recommendations, and exportable reports.
 
-**Live app**: https://mgifford.github.io/susty-house/
+**Live app**: <https://mgifford.github.io/susty-house/>
 
 ---
 
@@ -26,7 +25,7 @@ filtered recommendations, and exportable reports.
 - 🎯 Recommendations filtered by your budget, skills, time, and ambition
 - 💾 Saves locally in your browser — no account needed
 - 📤 Export as `.yaml` (re-importable) or `.html` (printable report)
-- 📥 Import a `.yaml` file to resume an assessment in any browser
+- 📥 Import a `.yaml` file to resume an assessment and open the imported results right away
 - 📅 Longitudinal tracking — revisit and compare assessments over time
 - ✈️ Works fully offline after first visit (PWA)
 
@@ -47,7 +46,7 @@ npx serve .
 # Right-click index.html → Open with Live Server
 ```
 
-Then open http://localhost:8080 in your browser.
+Then open <http://localhost:8080> in your browser.
 
 **Note**: The app is served at `/susty-house/` on GitHub Pages. When running locally on
 `localhost:8080/`, some PWA install features require HTTPS. All core features work over
@@ -57,7 +56,7 @@ plain HTTP.
 
 ## Project Structure
 
-```
+```text
 susty-house/
 ├── index.html          # SPA shell
 ├── manifest.json       # PWA manifest
