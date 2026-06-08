@@ -38,3 +38,9 @@ test-results/
 __pycache__/
 *.pyc
 .DS_Store
+node_modules/
+test-results/
+.cache/
+__pycache__/
+*.pyc
+.DS_Store
