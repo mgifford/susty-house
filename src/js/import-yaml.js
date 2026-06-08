@@ -1,7 +1,7 @@
 /* Sustainable House Evaluator — YAML Import */
 
 import * as db from './db.js';
-import { listProfiles } from './profiles.js';
+import { listProfiles, setActiveProfile } from './profiles.js';
 import { setState } from './store.js';
 
 const ENUMS = {
@@ -215,7 +215,7 @@ export function initImportHandler() {
       }
 
       await listProfiles();
-
+      await setActiveProfile(profile.id);
       const latestAssessment = assessments[assessments.length - 1] ?? null;
       setState({
         activeProfileId: profile.id,
@@ -223,9 +223,8 @@ export function initImportHandler() {
         activeAssessmentId: latestAssessment?.id ?? null,
         activeAssessment: latestAssessment,
       });
-      localStorage.setItem('lastActiveProfileId', profile.id);
 
-      window.App.showView('view-home');
+      window.App.showView(latestAssessment ? 'view-results' : 'view-profile');
       window.App.showToast('Assessment loaded successfully.');
     } catch (error) {
       const message = error instanceof ImportError

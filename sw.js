@@ -4,7 +4,7 @@
   Static assets still use cache-first for offline speed.
    ========================================================= */
 
-const CACHE_NAME = 'susty-house-v5';
+const CACHE_NAME = 'susty-house-v6';
 
 const PRECACHE_URLS = [
   './',
