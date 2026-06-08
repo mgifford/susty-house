@@ -22,7 +22,7 @@ filtered recommendations, and exportable reports.
 
 - 🏡 Guided assessment across 6 categories (building envelope, HVAC, hot water, renewables,
   water efficiency, lighting & appliances)
-- 📊 Weighted sustainability score (0–100) with category breakdowns
+- 📊 House fitness score (0–100) with category breakdowns
 - 🎯 Recommendations filtered by your budget, skills, time, and ambition
 - 💾 Saves locally in your browser — no account needed
 - 📤 Export as `.yaml` (re-importable) or `.html` (printable report)

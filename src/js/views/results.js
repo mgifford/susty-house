@@ -12,6 +12,13 @@ const SCORE_LABELS = [
   [70, 100, 'Great work!',     'score-high'],
 ];
 
+const AMBITION_TARGETS = {
+  light_touch: 35,
+  meaningful: 55,
+  significant: 75,
+  deep_green: 90,
+};
+
 function scoreClass(score) {
   for (const [lo, hi, , cls] of SCORE_LABELS) {
     if (score >= lo && score <= hi) return cls;
@@ -24,6 +31,44 @@ function scoreLabel(score) {
     if (score >= lo && score <= hi) return lbl;
   }
   return '';
+}
+
+function ambitionLabel(ambitionLevel) {
+  return window.t(`capacity.ambition.${ambitionLevel}`) || ambitionLevel;
+}
+
+function ambitionStatus(score, ambitionLevel) {
+  const target = AMBITION_TARGETS[ambitionLevel] ?? 55;
+  const diff = Math.round(score - target);
+  const label = ambitionLabel(ambitionLevel);
+
+  if (diff > 5) {
+    return {
+      target,
+      diff,
+      cls: 'score-high',
+      title: 'Ahead of ambition',
+      message: `You are ${diff} points ahead of your ${label} ambition.`,
+    };
+  }
+
+  if (diff < -5) {
+    return {
+      target,
+      diff,
+      cls: 'score-low',
+      title: 'Behind ambition',
+      message: `You are ${Math.abs(diff)} points behind your ${label} ambition.`,
+    };
+  }
+
+  return {
+    target,
+    diff,
+    cls: 'score-mid',
+    title: 'On track',
+    message: `You are close to your ${label} ambition.`,
+  };
 }
 
 function buildGaugeArc(score) {
@@ -155,6 +200,7 @@ export function renderResultsView() {
     time_availability: 'weekends',
     ambition_level: 'meaningful',
   };
+  const ambition = ambitionStatus(score, capacity.ambition_level);
 
   const recommendations = getRecommendations(activeAssessment, capacity, itemCatalogue, 10);
   const cssClass = scoreClass(score);
@@ -172,17 +218,39 @@ export function renderResultsView() {
 
   section.innerHTML = `
     <div class="container">
-      <h1 tabindex="-1">Your Sustainability Results</h1>
+      <h1 tabindex="-1">Your House Fitness Results</h1>
+
+      <section class="card mb-md" aria-label="How to read this fitness score">
+        <h2>How to read this fitness score</h2>
+        <p class="text-muted">
+          The number below shows your current baseline. It is not a final target.
+          The real question is whether your current work matches the ambition you set for this house.
+        </p>
+      </section>
+
+      <section class="card mb-md" aria-label="Ambition alignment">
+        <div class="flex justify-between items-center flex-wrap gap-sm">
+          <div>
+            <h2 class="mb-xs">Ambition alignment</h2>
+            <p class="text-muted mb-0">Goal: ${ambitionLabel(capacity.ambition_level)}</p>
+          </div>
+          <div class="score-headline ${ambition.cls}">${ambition.title}</div>
+        </div>
+        <p class="mt-md mb-0">${ambition.message}</p>
+        <p class="text-muted mt-sm mb-0">
+          Target baseline for this ambition: ${ambition.target}/100.
+        </p>
+      </section>
 
       <!-- Overall score -->
       <section class="results-score-section" aria-label="Overall score">
         <div class="score-gauge-wrap">
           <div role="meter" aria-valuenow="${Math.round(score)}" aria-valuemin="0" aria-valuemax="100"
-               aria-label="Overall sustainability score: ${Math.round(score)} out of 100">
+               aria-label="Overall house fitness score: ${Math.round(score)} out of 100">
             ${gaugeHtml(score, cssClass)}
           </div>
           <p class="score-headline ${cssClass}">${label}</p>
-          <p class="text-muted">House sustainability score</p>
+          <p class="text-muted">Current fitness score</p>
         </div>
       </section>
 
@@ -191,7 +259,7 @@ export function renderResultsView() {
         <h2>Category Breakdown</h2>
         <div class="table-wrap">
           <table class="category-table">
-            <caption class="sr-only">Sustainability scores by category</caption>
+            <caption class="sr-only">Fitness scores by category</caption>
             <thead>
               <tr>
                 <th scope="col">Category</th>
@@ -210,7 +278,7 @@ export function renderResultsView() {
       <!-- Recommendations -->
       <section aria-label="Recommendations" class="mt-lg">
         <h2>Recommended Next Steps</h2>
-        <p class="text-muted">Based on your current ratings and capacity settings.</p>
+        <p class="text-muted">Based on your current ratings, budget, time, skill, and ambition.</p>
         <div class="recommendations-list">
           ${recCards}
         </div>

@@ -36,7 +36,7 @@ function render(state) {
   `;
 
   // Wire events
-  section.querySelector('#btn-new-profile, #btn-new-profile-empty').addEventListener('click', () => {
+  section.querySelector('#btn-new-profile').addEventListener('click', () => {
     setState({ activeProfileId: null, activeProfile: null, currentView: 'profile' });
     window.App.showView('view-profile');
   });
@@ -79,11 +79,17 @@ function render(state) {
 
 function renderEmpty() {
   return `
-    <div class="card text-center mt-lg">
-      <p class="text-muted">${window.t('home.no_profiles')}</p>
-      <button class="btn btn-primary mt-md" id="btn-new-profile-empty" type="button">
-        + ${window.t('home.new_profile')}
-      </button>
+    <div class="card mt-lg">
+      <div class="stack">
+        <h2>${window.t('home.empty_title')}</h2>
+        <p>${window.t('home.empty_body')}</p>
+        <ol>
+          <li>${window.t('home.empty_step_1')}</li>
+          <li>${window.t('home.empty_step_2')}</li>
+          <li>${window.t('home.empty_step_3')}</li>
+        </ol>
+        <p class="text-muted">${window.t('home.empty_hint')}</p>
+      </div>
     </div>
   `;
 }

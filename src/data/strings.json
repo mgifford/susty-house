@@ -7,7 +7,13 @@
   "home.title": "Your House Assessments",
   "home.new_profile": "New Assessment",
   "home.import_yaml": "Import from YAML",
-  "home.no_profiles": "No assessments yet. Start your first one!",
+  "home.no_profiles": "No assessments yet. Start here.",
+  "home.empty_title": "How it works",
+  "home.empty_body": "This app helps you review a home's sustainability in a simple, guided way.",
+  "home.empty_step_1": "Create a house profile with the main details of the home and your budget, time, skill, and ambition.",
+  "home.empty_step_2": "Complete the assessment. The app scores each section and saves your progress.",
+  "home.empty_step_3": "Review the results to see recommended next steps.",
+  "home.empty_hint": "Use the New Assessment button above to begin, or import a YAML file if you already have one.",
   "home.delete_confirm": "Delete this house profile? This cannot be undone.",
 
   "profile.title": "House Profile",
@@ -60,9 +66,16 @@
   "assessment.complete": "View Results",
 
   "results.title": "Assessment Results",
-  "results.overall_score": "Overall Sustainability Score",
+  "results.overall_score": "House Fitness Score",
   "results.category_scores": "Category Scores",
   "results.recommendations": "Recommended Next Steps",
+  "results.score_context": "The fitness score below shows your current baseline. The main question is whether the work matches your ambition for this house.",
+  "results.ambition_alignment": "Ambition alignment",
+  "results.ambition_goal": "Goal",
+  "results.ambition_target": "Target baseline for this ambition",
+  "results.ahead_of_ambition": "Ahead of ambition",
+  "results.behind_ambition": "Behind ambition",
+  "results.on_track": "On track",
   "results.export_yaml": "Export YAML",
   "results.export_html": "Export HTML Report",
 
@@ -71,7 +84,7 @@
   "error.import_schema_version": "This file was created with an incompatible version of the app.",
   "error.required_field": "This field is required.",
 
-  "aria.score_badge": "Current sustainability score",
+  "aria.score_badge": "Current house fitness score",
   "aria.progress_bar": "Assessment completion progress",
   "aria.slider_value": "Current rating"
 }

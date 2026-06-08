@@ -430,7 +430,7 @@ export function toHTMLString(profile, currentAssessment, history, catalogue, rec
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Sustainability Report - ${escapeHtml(profile.nickname)}</title>
+    <title>House Fitness Report - ${escapeHtml(profile.nickname)}</title>
     <style>${reportStyles()}</style>
   </head>
   <body>
@@ -438,18 +438,18 @@ export function toHTMLString(profile, currentAssessment, history, catalogue, rec
       <header class="card">
         <div class="header-grid">
           <div>
-            <h1>Sustainability Assessment Report</h1>
+            <h1>House Fitness Report</h1>
             <h2>${escapeHtml(profile.nickname)}</h2>
             <p class="meta-line">
               <span>This report: ${formatDate(currentAssessment.created_at)}</span>
-              <span>Overall score: ${score}/100</span>
+              <span>Overall fitness score: ${score}/100</span>
             </p>
             ${assessorLine}
           </div>
           <aside class="score-panel">
             <div class="score-number ${escapeHtml(scoreDetails.className)}">${score}/100</div>
             <div class="score-status">${escapeHtml(scoreDetails.label)}</div>
-            <p class="muted">House sustainability score</p>
+            <p class="muted">House fitness score</p>
           </aside>
         </div>
       </header>
