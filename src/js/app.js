@@ -10,13 +10,150 @@ import { loadCatalogue } from './store.js';
 // ---------- View Router -----------------------------------
 
 const VIEWS = ['view-loading', 'view-home', 'view-profile', 'view-assessment', 'view-results'];
+const VIEW_ROUTES = {
+  'view-home': '',
+  'view-profile': 'profile',
+  'view-assessment': 'assessment',
+  'view-results': 'results',
+};
+
+const ASSESSMENT_CATEGORY_ROUTES = {
+  building_envelope: 'assessment-envelope',
+  heating_cooling: 'assessment-temperature',
+  hot_water: 'assessment-hot-water',
+  renewable_energy_transportation: 'assessment-renewables',
+  water_efficiency: 'assessment-water',
+  lighting_appliances: 'assessment-lighting',
+};
+
+function slugify(value) {
+  return String(value ?? '').trim().toLowerCase().replace(/_/g, '-');
+}
+
+function routeFragmentForView(viewId) {
+  return VIEW_ROUTES[viewId] ?? '';
+}
+
+function routeFragmentForCategory(categoryKey) {
+  return ASSESSMENT_CATEGORY_ROUTES[categoryKey] ?? `assessment-${slugify(categoryKey)}`;
+}
+
+function categoryKeyFromRouteFragment(fragment) {
+  const aliasEntry = Object.entries(ASSESSMENT_CATEGORY_ROUTES)
+    .find(([, routeFragment]) => routeFragment === fragment);
+  if (aliasEntry) return aliasEntry[0];
+
+  if (!fragment?.startsWith('assessment-')) return null;
+
+  const suffix = fragment.slice('assessment-'.length);
+  const normalizedSuffix = suffix.replace(/-/g, '_');
+  const exactEntry = Object.keys(ASSESSMENT_CATEGORY_ROUTES)
+    .find(categoryKey => categoryKey === normalizedSuffix);
+  if (exactEntry) return exactEntry;
+
+  const slugMatch = Object.keys(ASSESSMENT_CATEGORY_ROUTES)
+    .find(categoryKey => slugify(categoryKey) === suffix);
+  return slugMatch ?? null;
+}
+
+function parseRouteFromLocation() {
+  const hashFragment = location.hash.replace(/^#/, '').trim();
+  const queryStage = new URLSearchParams(location.search).get('stage')?.trim() ?? '';
+  const fragment = hashFragment || queryStage;
+
+  if (!fragment || fragment === 'home') {
+    return { viewId: 'view-home', fragment: '', categoryKey: null };
+  }
+
+  if (fragment === 'profile') {
+    return { viewId: 'view-profile', fragment: 'profile', categoryKey: null };
+  }
+
+  if (fragment === 'results') {
+    return { viewId: 'view-results', fragment: 'results', categoryKey: null };
+  }
+
+  if (fragment === 'assessment') {
+    return { viewId: 'view-assessment', fragment: 'assessment', categoryKey: null };
+  }
+
+  const categoryKey = categoryKeyFromRouteFragment(fragment);
+  if (categoryKey) {
+    return {
+      viewId: 'view-assessment',
+      fragment: routeFragmentForCategory(categoryKey),
+      categoryKey,
+    };
+  }
+
+  return { viewId: 'view-home', fragment: '', categoryKey: null };
+}
+
+function syncRoute(fragment, replace = false) {
+  const nextFragment = fragment ? `#${fragment}` : '';
+  if (location.hash === nextFragment) return;
+
+  if (!fragment) {
+    history[replace ? 'replaceState' : 'pushState'](null, '', `${location.pathname}${location.search}`);
+    return;
+  }
+
+  if (replace) {
+    history.replaceState(null, '', `${location.pathname}${location.search}${nextFragment}`);
+    return;
+  }
+
+  location.hash = fragment;
+}
+
+function resolveRouteForStartup(route, hasActiveProfile) {
+  if (route.viewId === 'view-profile') {
+    return { viewId: 'view-profile', fragment: 'profile' };
+  }
+
+  if (route.viewId === 'view-results') {
+    return hasActiveProfile
+      ? { viewId: 'view-results', fragment: 'results' }
+      : { viewId: 'view-profile', fragment: 'profile' };
+  }
+
+  if (route.viewId === 'view-assessment') {
+    return hasActiveProfile
+      ? route
+      : { viewId: 'view-profile', fragment: 'profile' };
+  }
+
+  return { viewId: 'view-home', fragment: '' };
+}
+
+function handleRouteChange() {
+  const route = parseRouteFromLocation();
+  const resolved = resolveRouteForStartup(route, !!getState().activeProfileId);
+  const needsSync = resolved.viewId !== route.viewId || resolved.fragment !== route.fragment;
+
+  showView(resolved.viewId, {
+    routeFragment: resolved.fragment,
+    syncHistory: needsSync,
+    replaceHistory: true,
+  });
+}
 
 /**
  * Show one view, hide all others. Moves focus to the view's first heading.
  * @param {string} viewId  - the section id (without #)
  */
-export function showView(viewId) {
+export function showView(viewId, options = {}) {
+  const {
+    routeFragment = routeFragmentForView(viewId),
+    syncHistory = true,
+    replaceHistory = false,
+  } = options;
+
   setState({ currentView: viewId.replace('view-', '') });
+
+  if (viewId !== 'view-loading' && syncHistory) {
+    syncRoute(routeFragment, replaceHistory);
+  }
 
   VIEWS.forEach(id => {
     const el = document.getElementById(id);
@@ -56,6 +193,18 @@ export function hideAllViews() {
     const el = document.getElementById(id);
     if (el) { el.setAttribute('hidden', ''); el.classList.remove('active'); }
   });
+}
+
+export function setRoute(fragment, options = {}) {
+  syncRoute(fragment, options.replace === true);
+}
+
+export function getRouteInfo() {
+  return parseRouteFromLocation();
+}
+
+export function getAssessmentCategoryRoute(categoryKey) {
+  return routeFragmentForCategory(categoryKey);
 }
 
 // ---------- Score Badge -----------------------------------
@@ -133,7 +282,8 @@ async function boot() {
       }
     });
 
-    showView('view-home');
+    const resolved = resolveRouteForStartup(parseRouteFromLocation(), !!getState().activeProfileId);
+    showView(resolved.viewId, { routeFragment: resolved.fragment, replaceHistory: true });
   } catch (err) {
     console.error('[App] Boot error:', err);
     const loading = document.getElementById('view-loading');
@@ -163,7 +313,10 @@ export function showToast(message, durationMs = 3000) {
 }
 
 // Expose to other modules
-window.App = { showView, hideAllViews, showToast, announceStatus };
+window.App = { showView, hideAllViews, showToast, announceStatus, setRoute, getRouteInfo, getAssessmentCategoryRoute };
+
+window.addEventListener('hashchange', handleRouteChange);
+window.addEventListener('popstate', handleRouteChange);
 
 // ---------- Start -----------------------------------------
 document.addEventListener('DOMContentLoaded', boot);

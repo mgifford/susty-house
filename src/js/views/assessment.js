@@ -4,6 +4,34 @@ import * as assessment from '../assessment.js';
 
 let _activeCategoryKey = null;
 
+const CATEGORY_ROUTE_FRAGMENTS = {
+  building_envelope: 'assessment-envelope',
+  heating_cooling: 'assessment-temperature',
+  hot_water: 'assessment-hot-water',
+  renewable_energy_transportation: 'assessment-renewables',
+  water_efficiency: 'assessment-water',
+  lighting_appliances: 'assessment-lighting',
+};
+
+function getRouteFragmentForCategory(categoryKey) {
+  return CATEGORY_ROUTE_FRAGMENTS[categoryKey] ?? `assessment-${String(categoryKey ?? '').replace(/_/g, '-')}`;
+}
+
+function getCategoryKeyFromRoute(fragment) {
+  const match = Object.entries(CATEGORY_ROUTE_FRAGMENTS)
+    .find(([, routeFragment]) => routeFragment === fragment);
+  if (match) return match[0];
+
+  if (!fragment?.startsWith('assessment-')) return null;
+
+  const suffix = fragment.slice('assessment-'.length);
+  const rawKey = suffix.replace(/-/g, '_');
+  if (rawKey in CATEGORY_ROUTE_FRAGMENTS) return rawKey;
+
+  return Object.keys(CATEGORY_ROUTE_FRAGMENTS)
+    .find(categoryKey => categoryKey.replace(/_/g, '-') === suffix) ?? null;
+}
+
 export function initAssessmentView() {
   subscribe(state => {
     if (state.currentView === 'assessment') {
@@ -19,7 +47,7 @@ export async function renderAssessmentView() {
 
   // Ensure we have an active assessment
   if (!state.activeProfileId) {
-    window.App.showView('view-home');
+    window.App.showView('view-profile');
     return;
   }
 
@@ -34,7 +62,21 @@ export async function renderAssessmentView() {
     return;
   }
 
-  if (!_activeCategoryKey) _activeCategoryKey = cats[0].key;
+  const routeInfo = window.App.getRouteInfo?.() ?? {};
+  const routeCategoryKey = routeInfo.categoryKey ? routeInfo.categoryKey : getCategoryKeyFromRoute(routeInfo.fragment);
+
+  if (routeCategoryKey && cats.some(cat => cat.key === routeCategoryKey)) {
+    _activeCategoryKey = routeCategoryKey;
+  }
+
+  if (!_activeCategoryKey || !cats.some(cat => cat.key === _activeCategoryKey)) {
+    _activeCategoryKey = cats[0].key;
+  }
+
+  const activeRouteFragment = getRouteFragmentForCategory(_activeCategoryKey);
+  if (!routeInfo.fragment || routeInfo.fragment === 'assessment' || routeInfo.fragment !== activeRouteFragment) {
+    window.App.setRoute?.(activeRouteFragment, { replace: true });
+  }
 
   _renderShell(section, currentState);
   _renderCategory(_activeCategoryKey);
@@ -156,11 +198,7 @@ function _wireAssessmentEvents(section) {
   section.querySelectorAll('.cat-nav-btn').forEach(btn => {
     btn.addEventListener('click', () => {
       _activeCategoryKey = btn.dataset.cat;
-      section.querySelectorAll('.cat-nav-btn').forEach(b => {
-        b.classList.toggle('active', b.dataset.cat === _activeCategoryKey);
-        b.setAttribute('aria-current', b.dataset.cat === _activeCategoryKey ? 'true' : 'false');
-      });
-      _renderCategory(_activeCategoryKey);
+      window.App.setRoute?.(getRouteFragmentForCategory(_activeCategoryKey));
     });
   });
 
@@ -169,7 +207,7 @@ function _wireAssessmentEvents(section) {
   if (catSelect) {
     catSelect.addEventListener('change', () => {
       _activeCategoryKey = catSelect.value;
-      _renderCategory(_activeCategoryKey);
+      window.App.setRoute?.(getRouteFragmentForCategory(_activeCategoryKey));
     });
   }
 

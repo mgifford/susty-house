@@ -107,8 +107,34 @@ export function getProgress(assessment) {
 }
 
 /**
- * Reset — creates a brand-new assessment record (preserves history).
+ * Reset — clears the active assessment in place.
  */
 export async function resetAssessment(profileId) {
-  return startAssessment(profileId);
+  const state = getState();
+  const currentAssessment = state.activeAssessment;
+
+  if (!currentAssessment || state.activeProfileId !== profileId) {
+    return startAssessment(profileId);
+  }
+
+  const clearedAssessment = {
+    ...JSON.parse(JSON.stringify(currentAssessment)),
+    updated_at: new Date().toISOString(),
+    overall_score: 0,
+    categories: currentAssessment.categories.map(category => ({
+      ...category,
+      score: 0,
+      completion_pct: 0,
+      items: category.items.map(item => ({
+        ...item,
+        slider_value: 0,
+        not_applicable: false,
+        notes: '',
+      })),
+    })),
+  };
+
+  await db.putAssessment(clearedAssessment);
+  setState({ activeAssessmentId: clearedAssessment.id, activeAssessment: clearedAssessment });
+  return clearedAssessment;
 }
