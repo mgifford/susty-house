@@ -11,6 +11,7 @@ export function registerServiceWorker() {
   navigator.serviceWorker.register('./sw.js')
     .then(registration => {
       console.log('[PWA] Service worker registered:', registration.scope);
+      registration.update().catch(() => {});
 
       registration.addEventListener('updatefound', () => {
         const newWorker = registration.installing;

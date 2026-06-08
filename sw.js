@@ -1,9 +1,10 @@
 /* =========================================================
    Sustainable House Evaluator — Service Worker
-   Cache-First strategy; pre-caches all app assets on install
+  Navigation requests use network-first so refreshed pages pick up new deploys.
+  Static assets still use cache-first for offline speed.
    ========================================================= */
 
-const CACHE_NAME = 'susty-house-v4';
+const CACHE_NAME = 'susty-house-v5';
 
 const PRECACHE_URLS = [
   './',
@@ -56,20 +57,41 @@ self.addEventListener('activate', event => {
   );
 });
 
-/* ----- Fetch: Cache-First strategy ----------------------- */
+/* ----- Fetch: network-first for navigations, cache-first for assets ----- */
 self.addEventListener('fetch', event => {
   // Only handle GET requests
   if (event.request.method !== 'GET') return;
 
+  const { request } = event;
+
+  if (request.mode === 'navigate' || request.destination === 'document') {
+    event.respondWith(
+      fetch(request)
+        .then(response => {
+          if (response && response.status === 200) {
+            const responseClone = response.clone();
+            caches.open(CACHE_NAME).then(cache => cache.put('./index.html', responseClone));
+          }
+          return response;
+        })
+        .catch(async () => {
+          const cached = await caches.match('./index.html');
+          if (cached) return cached;
+          return caches.match('./');
+        })
+    );
+    return;
+  }
+
   event.respondWith(
-    caches.match(event.request).then(cached => {
+    caches.match(request).then(cached => {
       if (cached) return cached;
 
-      return fetch(event.request).then(response => {
+      return fetch(request).then(response => {
         // Cache successful responses for same-origin and CDN requests
         if (response && response.status === 200) {
           const responseClone = response.clone();
-          caches.open(CACHE_NAME).then(cache => cache.put(event.request, responseClone));
+          caches.open(CACHE_NAME).then(cache => cache.put(request, responseClone));
         }
         return response;
       });
