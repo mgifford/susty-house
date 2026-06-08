@@ -4,7 +4,7 @@
   Static assets still use cache-first for offline speed.
    ========================================================= */
 
-const CACHE_NAME = 'susty-house-v6';
+const CACHE_NAME = 'susty-house-v9';
 
 const PRECACHE_URLS = [
   './',
@@ -64,6 +64,22 @@ self.addEventListener('fetch', event => {
 
   const { request } = event;
 
+  const networkFirst = () => (
+    fetch(request)
+      .then(response => {
+        if (response && response.status === 200) {
+          const responseClone = response.clone();
+          caches.open(CACHE_NAME).then(cache => cache.put(request, responseClone));
+        }
+        return response;
+      })
+      .catch(async () => {
+        const cached = await caches.match(request);
+        if (cached) return cached;
+        throw new Error(`Network request failed for ${request.url}`);
+      })
+  );
+
   if (request.mode === 'navigate' || request.destination === 'document') {
     event.respondWith(
       fetch(request)
@@ -80,6 +96,11 @@ self.addEventListener('fetch', event => {
           return caches.match('./');
         })
     );
+    return;
+  }
+
+  if (request.destination === 'script' || request.destination === 'style' || request.destination === 'manifest' || request.destination === 'worker' || request.url.endsWith('.json')) {
+    event.respondWith(networkFirst());
     return;
   }
 

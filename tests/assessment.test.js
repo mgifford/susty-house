@@ -72,6 +72,12 @@ test('Create basic house assessment', async ({ page }) => {
   await page.click('#btn-view-results');
   await expect(page.locator('#view-results')).toBeVisible({ timeout: 10000 });
 
+  // Legacy renewable-energy hash should still open the renewable energy category
+  const legacyPage = await page.context().newPage();
+  await legacyPage.goto(`${BASE_URL}#assessment-renewable-energy`);
+  await expect(legacyPage.locator('#view-assessment')).toBeVisible({ timeout: 15000 });
+  await expect(legacyPage.locator('#category-content h2')).toHaveText('Renewable Energy');
+
   // Verify overall score meter is present
   const scoreText = await page.locator('[role="meter"]').innerText();
   console.log('Final Calculated Score:', scoreText.replace(/\n/g, ' '));

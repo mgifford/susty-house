@@ -21,10 +21,20 @@ const ASSESSMENT_CATEGORY_ROUTES = {
   building_envelope: 'assessment-envelope',
   heating_cooling: 'assessment-temperature',
   hot_water: 'assessment-hot-water',
-  renewable_energy_transportation: 'assessment-renewables',
+  renewable_energy: 'assessment-renewables',
   water_efficiency: 'assessment-water',
   lighting_appliances: 'assessment-lighting',
 };
+
+const LEGACY_ASSESSMENT_CATEGORY_ROUTES = {
+  'assessment-renewable-energy': 'renewable_energy',
+};
+
+const MODULE_VERSION = '20260608-3';
+
+function versionedModulePath(path) {
+  return `${path}?v=${MODULE_VERSION}`;
+}
 
 function slugify(value) {
   return String(value ?? '').trim().toLowerCase().replace(/_/g, '-');
@@ -39,6 +49,9 @@ function routeFragmentForCategory(categoryKey) {
 }
 
 function categoryKeyFromRouteFragment(fragment) {
+  const legacyCategoryKey = LEGACY_ASSESSMENT_CATEGORY_ROUTES[fragment];
+  if (legacyCategoryKey) return legacyCategoryKey;
+
   const aliasEntry = Object.entries(ASSESSMENT_CATEGORY_ROUTES)
     .find(([, routeFragment]) => routeFragment === fragment);
   if (aliasEntry) return aliasEntry[0];
@@ -175,16 +188,16 @@ export function showView(viewId, options = {}) {
 
   // Trigger view-specific renders
   if (viewId === 'view-assessment') {
-    import('./views/assessment.js').then(m => m.renderAssessmentView());
+    import(versionedModulePath('./views/assessment.js')).then(m => m.renderAssessmentView());
   }
   if (viewId === 'view-home') {
-    import('./views/home.js').then(m => m.renderHomeView?.());
+    import(versionedModulePath('./views/home.js')).then(m => m.renderHomeView?.());
   }
   if (viewId === 'view-profile') {
-    import('./views/profile.js').then(m => m.renderProfileView?.());
+    import(versionedModulePath('./views/profile.js')).then(m => m.renderProfileView?.());
   }
   if (viewId === 'view-results') {
-    import('./views/results.js').then(m => m.renderResultsView?.());
+    import(versionedModulePath('./views/results.js')).then(m => m.renderResultsView?.());
   }
 }
 
@@ -253,11 +266,11 @@ async function boot() {
       { initResultsView },
       { initImportHandler },
     ] = await Promise.all([
-      import('./views/home.js'),
-      import('./views/profile.js'),
-      import('./views/assessment.js'),
-      import('./views/results.js'),
-      import('./import-yaml.js'),
+      import(versionedModulePath('./views/home.js')),
+      import(versionedModulePath('./views/profile.js')),
+      import(versionedModulePath('./views/assessment.js')),
+      import(versionedModulePath('./views/results.js')),
+      import(versionedModulePath('./import-yaml.js')),
     ]);
 
     initHomeView();

@@ -8,9 +8,13 @@ const CATEGORY_ROUTE_FRAGMENTS = {
   building_envelope: 'assessment-envelope',
   heating_cooling: 'assessment-temperature',
   hot_water: 'assessment-hot-water',
-  renewable_energy_transportation: 'assessment-renewables',
+  renewable_energy: 'assessment-renewables',
   water_efficiency: 'assessment-water',
   lighting_appliances: 'assessment-lighting',
+};
+
+const LEGACY_CATEGORY_ROUTE_FRAGMENTS = {
+  'assessment-renewable-energy': 'renewable_energy',
 };
 
 function getRouteFragmentForCategory(categoryKey) {
@@ -18,6 +22,9 @@ function getRouteFragmentForCategory(categoryKey) {
 }
 
 function getCategoryKeyFromRoute(fragment) {
+  const legacyCategoryKey = LEGACY_CATEGORY_ROUTE_FRAGMENTS[fragment];
+  if (legacyCategoryKey) return legacyCategoryKey;
+
   const match = Object.entries(CATEGORY_ROUTE_FRAGMENTS)
     .find(([, routeFragment]) => routeFragment === fragment);
   if (match) return match[0];
@@ -62,8 +69,11 @@ export async function renderAssessmentView() {
     return;
   }
 
+  const rawHashFragment = location.hash.replace(/^#/, '').trim();
   const routeInfo = window.App.getRouteInfo?.() ?? {};
-  const routeCategoryKey = routeInfo.categoryKey ? routeInfo.categoryKey : getCategoryKeyFromRoute(routeInfo.fragment);
+  const routeCategoryKey = routeInfo.categoryKey
+    ? routeInfo.categoryKey
+    : getCategoryKeyFromRoute(routeInfo.fragment || rawHashFragment) || getCategoryKeyFromRoute(rawHashFragment);
 
   if (routeCategoryKey && cats.some(cat => cat.key === routeCategoryKey)) {
     _activeCategoryKey = routeCategoryKey;
