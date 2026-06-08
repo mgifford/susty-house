@@ -1,3 +1,19 @@
+---
+
+title: Susty House
+
+emoji: 🏠
+
+colorFrom: green
+
+colorTo: blue
+
+sdk: docker
+
+app_port: 7860
+
+---
+
 # Sustainable House Evaluator
 
 A progressive web application for assessing and improving the sustainability of your home.
